@@ -26,3 +26,11 @@ Ordningen på rummen kan komma att justeras om utifall vi har tid att lägga in 
 
 ## Rules:
 Morning standup meetings on every project day, 9:00
+
+Make classes for thing like for example rooms that are going to be used multiple times
+
+### Blueprint:
+1. Create a room class
+2. Begin with 1 floor and 2 rooms
+3. Add a door between the rooms
+4. 
