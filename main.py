@@ -9,23 +9,23 @@ def createWorld ():
     rooms = [] # This will be floors in the future that return all possible rooms
     expeditionDoor = Door("expedition")
     officeDoor = Door("office")
-    rooms.append(Room("corridor A",[expeditionDoor, officeDoor]))
+    rooms.append(Room("corridor",[expeditionDoor, officeDoor]))
     rooms.append(Room("expedition", [expeditionDoor]))
     rooms.append(Room("office", [officeDoor]))
-    rooms[0].addConnectedRoom(rooms[2])
-    rooms[0].addConnectedRoom(rooms[1])
+    rooms[0].addConnectedRoom(rooms[1]) # corridor A leads to office
+    rooms[0].addConnectedRoom(rooms[2]) # corridor A leads to expedition
+    rooms[1].addConnectedRoom(rooms[0]) # expedition leads to corridor A
+    rooms[2].addConnectedRoom(rooms[0]) # office leads to corridor A
     action(rooms)
     
 
+
+
 def walk(rooms,currentRoom):
     print("These are the options")
-    #potentialDoors = currentRoom.getDoorList()
     connectedRooms = currentRoom.getConnectedRooms()
     for room in connectedRooms :
         print(room.getName())
-    return rooms[0]
-    """ for rooms in connectedRooms:
-        print(door.getName())
     userInput = input("Where do you want to go: ")
     for index in range(len(rooms)) :
         if rooms[index].getName() == userInput :
@@ -36,7 +36,10 @@ def walk(rooms,currentRoom):
                     else:
                         print("-------------------------------")
                         print("The door is closed")
-                        return currentRoom """
+                        return currentRoom
+# When you in office, you can't go back to Corridor because there is no check which door we want to go to.
+
+
 
 
 
