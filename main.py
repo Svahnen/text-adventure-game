@@ -12,15 +12,19 @@ def createWorld ():
     rooms.append(Room("corridor A",[expeditionDoor, officeDoor]))
     rooms.append(Room("expedition", [expeditionDoor]))
     rooms.append(Room("office", [officeDoor]))
-    rooms[0].addConnectedRooms(rooms[2])
-    rooms[0].addConnectedRooms(rooms[1])
+    rooms[0].addConnectedRoom(rooms[2])
+    rooms[0].addConnectedRoom(rooms[1])
     action(rooms)
     
 
 def walk(rooms,currentRoom):
     print("These are the options")
-    potentialDoors = currentRoom.getDoorList()
-    for door in potentialDoors:
+    #potentialDoors = currentRoom.getDoorList()
+    connectedRooms = currentRoom.getConnectedRooms()
+    for room in connectedRooms :
+        print(room.getName())
+    return rooms[0]
+    """ for rooms in connectedRooms:
         print(door.getName())
     userInput = input("Where do you want to go: ")
     for index in range(len(rooms)) :
@@ -32,7 +36,7 @@ def walk(rooms,currentRoom):
                     else:
                         print("-------------------------------")
                         print("The door is closed")
-                        return currentRoom
+                        return currentRoom """
 
 
 
