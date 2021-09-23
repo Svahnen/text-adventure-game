@@ -6,6 +6,7 @@ from door import Door
 
 def createWorld ():
     rooms = [] # This will be floors in the future that return all possible rooms
+    expeditionDoor = Door()
     rooms.append(Room("corridor A"))
     rooms.append(Room("expedition"))
     action(rooms)
