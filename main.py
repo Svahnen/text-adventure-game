@@ -24,18 +24,45 @@ def walk(rooms,currentRoom):
              return rooms[index]
         
 def doorAction(currentRoom):
+    print("-------------------------------")
     print("These are the following door(s)")
     potentialDoors = currentRoom.getDoorList()
     for door in potentialDoors:
-        print(door.getName())
-    userInput = input("Which door do you want to open: ")
-    for index in range(len(potentialDoors)) :
-        if potentialDoors[index].getName() == userInput :
-             potentialDoors[index].open()
+        if door.isOpen():
+            print(door.getName() + " open")
+        else:
+            print(door.getName() + " closed")
+
+    print("1. open ")
+    print("2. close ")
+    print("3. cancel ")
+    try:
+        actionInput = int(input("What do you want to do? "))
+        if actionInput == 1 :
+            userInput = input("Which door do you want to open: ")
+            for index in range(len(potentialDoors)) :
+                if potentialDoors[index].getName() == userInput :
+                    potentialDoors[index].open()
+                    print("-------------------------------")
+                    print("You have now opened the door", potentialDoors[index].getName())
+        elif actionInput == 2 :
+            userInput = input("Which door do you want to close: ")
+            for index in range(len(potentialDoors)) :
+                if potentialDoors[index].getName() == userInput :
+                    potentialDoors[index].close()
+                    print("-------------------------------")
+                    print("You have now closed the door", potentialDoors[index].getName())
+        elif actionInput == 3 :
+            return
+    except ValueError:
+        print("You need to enter a number!")
+
+    
 
 def action(rooms):
     currentRoom = rooms[0]
     while True:
+        print("-------------------------------")
         print("You are currently in " + currentRoom.getName())
         print("What do you want to do?")
         print("1. Walk")
