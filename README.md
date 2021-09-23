@@ -33,4 +33,4 @@ Make classes for thing like for example rooms that are going to be used multiple
 1. Create a room class
 2. Begin with 1 floor and 2 rooms
 3. Add a door between the rooms
-4. 
+4. Build a search function that looks through what the room have to offer

@@ -3,25 +3,15 @@
 from room import Room
 from door import Door
 
-randomDoor = Door()
-print(randomDoor.isOpen())
-randomDoor.open()
-print(randomDoor.isOpen())
-
-
 
 def createWorld ():
     rooms = [] # This will be floors in the future that return all possible rooms
+    rooms.append(Room("corridor A"))
     rooms.append(Room("expedition"))
-    rooms.append(Room("office"))
-    currentRoom = rooms[0]
-    while True:
-        print("Location: "+ currentRoom.getName())
-        currentRoom = walk(rooms)
-        print("Location: "+ currentRoom.getName())
-        print("-----------------------------------")
+    action(rooms)
 
-def walk(rooms):
+def walk(rooms,currentRoom):
+    print(currentRoom.getName())
     print("The room names are:")
     for room in rooms:
         print(room.getName())
@@ -30,5 +20,18 @@ def walk(rooms):
         if roomName == room.getName():
             return room
 
-#createWorld()
+def action(rooms):
+    currentRoom = rooms[0]
+    while True:
+        print("What do you want to do?")
+        print("1. Walk")
+        try:
+            action = int(input())
+            if action == 1 :
+                currentRoom = walk(rooms, currentRoom)
+        except ValueError:
+            print("You need to enter a number!")
+            
+
+createWorld()
 
