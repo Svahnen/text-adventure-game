@@ -7,18 +7,29 @@ from door import Door
 
 def createWorld ():
     rooms = [] # This will be floors in the future that return all possible rooms
+
+    # Create all doors
     expeditionDoor = Door("expedition")
     officeDoor = Door("office")
-    rooms.append(Room("corridor",[expeditionDoor, officeDoor]))
-    rooms.append(Room("expedition", [expeditionDoor]))
-    rooms.append(Room("office", [officeDoor]))
-    rooms[0].addConnectedRoom(rooms[1]) # corridor A leads to office
-    rooms[0].addConnectedRoom(rooms[2]) # corridor A leads to expedition
-    rooms[1].addConnectedRoom(rooms[0]) # expedition leads to corridor A
-    rooms[2].addConnectedRoom(rooms[0]) # office leads to corridor A
+
+    # Create all rooms
+    corridorRoom = Room("corridor",[expeditionDoor, officeDoor])
+    expeditionRoom = Room("expedition", [expeditionDoor])
+    officeRoom = Room("office", [officeDoor])
+
+    # Connect rooms together
+    corridorRoom.addConnectedRoom(officeRoom) # corridor A leads to office
+    corridorRoom.addConnectedRoom(expeditionRoom) # corridor A leads to expedition
+    expeditionRoom.addConnectedRoom(corridorRoom) # expedition leads to corridor
+    officeRoom.addConnectedRoom(corridorRoom) # office leads to corridor
+
+    # Append the rooms into the rooms list
+    rooms.append(corridorRoom)
+    rooms.append(expeditionRoom)
+    rooms.append(officeRoom)
+
     action(rooms)
     
-
 
 
 def walk(rooms,currentRoom):
@@ -38,8 +49,6 @@ def walk(rooms,currentRoom):
                         print("The door is closed")
                         return currentRoom
 # When you in office, you can't go back to Corridor because there is no check which door we want to go to.
-
-
 
 
 
