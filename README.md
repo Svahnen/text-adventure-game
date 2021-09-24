@@ -27,10 +27,13 @@ Ordningen på rummen kan komma att justeras om utifall vi har tid att lägga in 
 ## Rules:
 Morning standup meetings on every project day, 9:00
 
-Make classes for thing like for example rooms that are going to be used multiple times
+Make classes for things like for example rooms that are going to be used multiple times
 
 ### Blueprint:
-1. Create a room class
-2. Begin with 1 floor and 2 rooms
-3. Add a door between the rooms
-4. Build a search function that looks through what the room have to offer
+1. Create a room class: Done
+2. Begin with 1 floor and 2 rooms: Done
+3. Add a door between the rooms: Done
+4. Build a Look function that looks for doors that can be opened or closed: Done
+5. Add description to the rooms, for example: "You are standing in a corridor and you see two doors"
+6. Add a lock class that can be added to the doors
+7. Make rooms able to be created whithout doors? Would make the code cleaner since a function on the room class that adds doors could be 1 line for eatch door added.

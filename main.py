@@ -4,7 +4,6 @@ from room import Room
 from door import Door
 
 
-
 def createWorld ():
     rooms = [] # This will be floors in the future that return all possible rooms
 
@@ -29,26 +28,29 @@ def createWorld ():
     rooms.append(officeRoom)
 
     action(rooms)
-    
 
 
 def walk(currentRoom):
     print("These are the options")
-    connectedRooms = currentRoom.getConnectedRooms() # The beginning of the fix
+    connectedRooms = currentRoom.getConnectedRooms()
     for room in connectedRooms :
         print(room.getName())
     userInput = input("Where do you want to go: ")
     for index in range(len(connectedRooms)) :
         if connectedRooms[index].getName() == userInput :
-            for doorInNextRoom in connectedRooms[index].getDoorList() :
-                for doorInCurrentRoom in currentRoom.getDoorList() :
-                    if doorInNextRoom == doorInCurrentRoom :
-                        if doorInCurrentRoom.isOpen():
-                            return connectedRooms[index] # Return the new room so it can update currentRoom
-                        else:
-                            print("-------------------------------")
-                            print("The door is closed")
-                            return currentRoom
+            try: # See is the door list in current room and next room have a matching door
+                for doorInNextRoom in connectedRooms[index].getDoorList() :
+                    for doorInCurrentRoom in currentRoom.getDoorList() :
+                        if doorInNextRoom == doorInCurrentRoom :
+                            if doorInCurrentRoom.isOpen():
+                                return connectedRooms[index] # Return the new room so it can update currentRoom
+                            else:
+                                print("-------------------------------")
+                                print("The door is closed")
+                                return currentRoom
+            except:
+                # The next room probably have no doors
+                return connectedRooms[index]
 
 
 def doorAction(currentRoom):
@@ -60,7 +62,6 @@ def doorAction(currentRoom):
             print(door.getName() + " open")
         else:
             print(door.getName() + " closed")
-
     print("1. open ")
     print("2. close ")
     print("3. cancel ")
@@ -85,7 +86,7 @@ def doorAction(currentRoom):
     except ValueError:
         print("You need to enter a number!")
 
-    
+
 
 def action(rooms):
     currentRoom = rooms[0]
@@ -103,6 +104,6 @@ def action(rooms):
                 doorAction(currentRoom)
         except ValueError:
             print("You need to enter a number!")
-            
+
 
 createWorld()
