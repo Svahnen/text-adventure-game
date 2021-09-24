@@ -3,6 +3,7 @@ class Door :
         self.name = name
         #self._lock = lock
         self.currentlyOpen = False
+        self.connectedRooms = []
 
     def open(self) :
         self.currentlyOpen = True
@@ -15,4 +16,10 @@ class Door :
     
     def getName(self) : 
         return self.name
+
+    def addConnectedRoom(self, room):
+        self.connectedRooms.append(room)
+
+    def getConnectedRooms(self) :
+        return self.connectedRooms
         

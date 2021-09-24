@@ -17,11 +17,12 @@ def createWorld ():
     expeditionRoom = Room("expedition", [expeditionDoor])
     officeRoom = Room("office", [officeDoor])
 
-    # Connect rooms together
-    corridorRoom.addConnectedRoom(officeRoom) # corridor A leads to office
-    corridorRoom.addConnectedRoom(expeditionRoom) # corridor A leads to expedition
-    expeditionRoom.addConnectedRoom(corridorRoom) # expedition leads to corridor
-    officeRoom.addConnectedRoom(corridorRoom) # office leads to corridor
+    # Connect rooms to the doors
+    expeditionDoor.addConnectedRoom(expeditionRoom) # This door sits between expeditionRoom and corridorRoom
+    expeditionDoor.addConnectedRoom(corridorRoom)
+
+    officeDoor.addConnectedRoom(officeRoom) # This door sits between officeRoom and corridorRoom
+    officeDoor.addConnectedRoom(corridorRoom)
 
     # Append the rooms into the rooms list
     rooms.append(corridorRoom)
