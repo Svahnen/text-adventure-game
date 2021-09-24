@@ -32,24 +32,23 @@ def createWorld ():
     
 
 
-def walk(rooms,currentRoom):
+def walk(currentRoom):
     print("These are the options")
-    connectedRooms = currentRoom.getConnectedRooms()
+    connectedRooms = currentRoom.getConnectedRooms() # The beginning of the fix
     for room in connectedRooms :
         print(room.getName())
     userInput = input("Where do you want to go: ")
-    for index in range(len(rooms)) :
-        if rooms[index].getName() == userInput :
-            for door in currentRoom.getDoorList() :
-                if door.getName() == userInput :
-                    if door.isOpen():
-                        return rooms[index]
-                    else:
-                        print("-------------------------------")
-                        print("The door is closed")
-                        return currentRoom
-# When you in office, you can't go back to Corridor because there is no check which door we want to go to.
-
+    for index in range(len(connectedRooms)) :
+        if connectedRooms[index].getName() == userInput :
+            for doorInNextRoom in connectedRooms[index].getDoorList() :
+                for doorInCurrentRoom in currentRoom.getDoorList() :
+                    if doorInNextRoom == doorInCurrentRoom :
+                        if doorInCurrentRoom.isOpen():
+                            return connectedRooms[index] # Return the new room so it can update currentRoom
+                        else:
+                            print("-------------------------------")
+                            print("The door is closed")
+                            return currentRoom
 
 
 def doorAction(currentRoom):
@@ -99,7 +98,7 @@ def action(rooms):
         try:
             action = int(input())
             if action == 1 :
-                currentRoom = walk(rooms, currentRoom)
+                currentRoom = walk(currentRoom)
             elif action == 2 :
                 doorAction(currentRoom)
         except ValueError:
