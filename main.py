@@ -22,6 +22,11 @@ def createWorld ():
     expeditionRoom.addConnectedRoom(corridorRoom) # expedition leads to corridor
     officeRoom.addConnectedRoom(corridorRoom) # office leads to corridor
 
+    # Add descriptions to the rooms
+    officeRoom.setDescription("You are standing in an office and you see a table")
+    corridorRoom.setDescription("You are standing in the corridor")
+    expeditionRoom.setDescription("You are in the expedition room, you see a [key]") #[Key] is interactive, type for example Use Key
+    
     # Append the rooms into the rooms list
     rooms.append(corridorRoom)
     rooms.append(expeditionRoom)
@@ -92,7 +97,8 @@ def action(rooms):
     currentRoom = rooms[0]
     while True:
         print("-------------------------------")
-        print("You are currently in " + currentRoom.getName())
+        print("*****" + currentRoom.getName() + "*****")
+        print(currentRoom.getDescription())
         print("What do you want to do?")
         print("1. Walk")
         print("2. Look for doors")
