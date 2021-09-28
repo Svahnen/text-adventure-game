@@ -41,6 +41,7 @@ def walk(currentRoom):
     for room in connectedRooms :
         print(room.getName())
     userInput = input("Where do you want to go: ")
+    userInput = userInput.lower()
     for index in range(len(connectedRooms)) :
         if connectedRooms[index].getName() == userInput :
             try: # See is the door list in current room and next room have a matching door
@@ -74,6 +75,7 @@ def doorAction(currentRoom):
         actionInput = int(input("What do you want to do? "))
         if actionInput == 1 :
             userInput = input("Which door do you want to open: ")
+            userInput = userInput.lower()
             for index in range(len(potentialDoors)) :
                 if potentialDoors[index].getName() == userInput :
                     potentialDoors[index].open()
@@ -81,6 +83,7 @@ def doorAction(currentRoom):
                     print("You have now opened the door", potentialDoors[index].getName())
         elif actionInput == 2 :
             userInput = input("Which door do you want to close: ")
+            userInput = userInput.lower()
             for index in range(len(potentialDoors)) :
                 if potentialDoors[index].getName() == userInput :
                     potentialDoors[index].close()
@@ -97,6 +100,7 @@ def useComputer():
         print("You have changed your grades and completed the game!")
         return False
     else :
+        print("You entered the wrong password! Try to find the password somewhere in the building")
         return True
 
 
@@ -107,9 +111,11 @@ def action(rooms):
         print("-------------------------------")
         print("***** " + currentRoom.getName() + " *****")
         print(currentRoom.getDescription())
+        print("-------------------------------")
         print("What do you want to do?")
         print("1. Walk")
         print("2. Look for doors")
+        print("9. Quit game")
         if currentRoom.getName() == "office":
             print("3. Use the computer")
         try:
@@ -120,6 +126,9 @@ def action(rooms):
                 doorAction(currentRoom)
             elif currentRoom.getName() == "office" and action == 3 :
                 running = useComputer()
+            elif action == 9 :
+                print("Try to find a better game loser!")
+                running = False
         except ValueError:
             print("You need to enter a number!")
 
