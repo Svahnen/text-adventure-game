@@ -70,3 +70,6 @@ Make classes for things like for example rooms that are going to be used multipl
 
 
 ### Bugs:
+Create message if you try to open door that is already open
+Create message if you try to close a closed door
+In office menu, put quit game under "Use the computer" print
