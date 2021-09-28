@@ -64,6 +64,7 @@ def walk(currentRoom):
 
 
 def doorAction(currentRoom):
+    doorFound = False
     print("-------------------------------")
     print("These are the following door(s)")
     potentialDoors = currentRoom.getDoorList()
@@ -80,7 +81,6 @@ def doorAction(currentRoom):
         if actionInput == 1 :
             userInput = input("Which door do you want to open: ")
             userInput = userInput.lower()
-            doorFound = False
             for index in range(len(potentialDoors)) :
                 if potentialDoors[index].getName() == userInput and potentialDoors[index].isOpen() == False :
                     potentialDoors[index].open()
@@ -89,18 +89,23 @@ def doorAction(currentRoom):
                     doorFound = True
                 elif potentialDoors[index].getName() == userInput :
                     print("The door is already open.")
+                    doorFound = True
             if not doorFound : # if doorFound == False: same same
                 print("There is no door with that name")
         elif actionInput == 2 :
             userInput = input("Which door do you want to close: ")
             userInput = userInput.lower()
             for index in range(len(potentialDoors)) :
-                if potentialDoors[index].getName() == userInput :
+                if potentialDoors[index].getName() == userInput and potentialDoors[index].isOpen(): 
                     potentialDoors[index].close()
                     print("-------------------------------")
                     print("You have now closed the door", potentialDoors[index].getName())
-                else :
-                    print("There is no door with that name")
+                    doorFound = True
+                elif potentialDoors[index].getName() == userInput :
+                    print("The door is already closed")
+                    doorFound = True
+            if not doorFound : 
+                print("There is no door with that name")
         elif actionInput == 3 :
             return
         else :
