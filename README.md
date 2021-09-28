@@ -70,5 +70,5 @@ Make classes for things like for example rooms that are going to be used multipl
 
 
 ### Bugs:
-1. In office menu, put quit game under "Use the computer" print Done
-2. When choosing the option to close/open a door that's already closed/open. It says that I have closed the door expedition, but also saying that there is no door with that name.
+1. In office menu, put quit game under "Use the computer": Done
+2. When choosing the option to close/open a door that's already closed/open. It says that I have closed the door expedition, but also saying that there is no door with that name.: Done
