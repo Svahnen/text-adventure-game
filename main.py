@@ -23,9 +23,9 @@ def createWorld ():
     officeRoom.addConnectedRoom(corridorRoom) # office leads to corridor
 
     # Add descriptions to the rooms
-    officeRoom.setDescription("You are standing in an office and you see a table")
+    officeRoom.setDescription("You are standing in an office and you see a computer on the desk")
     corridorRoom.setDescription("You are standing in the corridor")
-    expeditionRoom.setDescription("You are in the expedition room, you see a [key]") #[Key] is interactive, type for example Use Key
+    expeditionRoom.setDescription("You are in the expedition room, you see a postit note on the wall with the numbers: 987")
     
     # Append the rooms into the rooms list
     rooms.append(corridorRoom)
@@ -91,23 +91,35 @@ def doorAction(currentRoom):
     except ValueError:
         print("You need to enter a number!")
 
+def useComputer():
+    userPass = input("Enter password: ")
+    if userPass == "987" :
+        print("You have changed your grades and completed the game!")
+        return False
+    else :
+        return True
 
 
 def action(rooms):
+    running = True
     currentRoom = rooms[0]
-    while True:
+    while running:
         print("-------------------------------")
-        print("*****" + currentRoom.getName() + "*****")
+        print("***** " + currentRoom.getName() + " *****")
         print(currentRoom.getDescription())
         print("What do you want to do?")
         print("1. Walk")
         print("2. Look for doors")
+        if currentRoom.getName() == "office":
+            print("3. Use the computer")
         try:
             action = int(input())
             if action == 1 :
                 currentRoom = walk(currentRoom)
             elif action == 2 :
                 doorAction(currentRoom)
+            elif currentRoom.getName() == "office" and action == 3 :
+                running = useComputer()
         except ValueError:
             print("You need to enter a number!")
 

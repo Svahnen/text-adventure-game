@@ -1,7 +1,6 @@
 class Door :
     def __init__(self, name) :
         self.name = name
-        #self._lock = lock
         self.currentlyOpen = False
 
     def open(self) :
