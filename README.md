@@ -67,3 +67,6 @@ Make classes for things like for example rooms that are going to be used multipl
 6. Add a lock class that can be added to the doors, add a description that a key is needed when locks are locked.
 7. Add doors to the rooms with a function instead? Would make the code cleaner since a function on the room class that adds doors could be 1 line for each door added, and would also make us able to create rooms without doors
 8. Manage strings so the player can type both Office and office
+
+
+### Bugs:
