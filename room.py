@@ -6,6 +6,7 @@ class Room :
         self.doorList = doorList
         self.connectedRooms = []
         self.description = ""
+        self.items = []
 
     def getName(self) :
         return self.name
@@ -24,3 +25,9 @@ class Room :
     
     def getDescription(self) :
         return self.description
+
+    def addItem(self, item) :
+        self.items.append(item)
+
+    def getItems(self) :
+        return self.items

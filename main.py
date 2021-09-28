@@ -8,7 +8,6 @@ from lock import Lock
 def createWorld ():
     rooms = [] # This will be floors in the future that return all possible rooms
 
-
     # Keys
     masterKey = 123
 
@@ -24,6 +23,9 @@ def createWorld ():
     corridorRoom = Room("corridor",[expeditionDoor, officeDoor])
     expeditionRoom = Room("expedition", [expeditionDoor])
     officeRoom = Room("office", [officeDoor])
+
+    # Add items to rooms
+    expeditionRoom.addItem(masterKey)
 
     # Connect rooms together
     corridorRoom.addConnectedRoom(officeRoom) # corridor A leads to office
@@ -139,6 +141,9 @@ def useComputer():
         print("You entered the wrong password! Try to find the password somewhere in the building")
         return True
 
+def pickUpItem(inventory : list, item) :
+    inventory.append(item)
+    print("You have now picked up item", item)
 
 def action(rooms):
     running = True
