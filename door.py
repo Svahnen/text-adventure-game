@@ -1,8 +1,10 @@
+from lock import Lock
+
 class Door :
-    def __init__(self, name) :
+    def __init__(self, name, lock : Lock) :
         self.name = name
         self.currentlyOpen = False
-        self.lock = None
+        self.lock = lock
 
     def open(self) :
         if self.lock == None : # See if there is a lock
@@ -23,7 +25,5 @@ class Door :
     
     def getName(self) : 
         return self.name
-    
-    def setLock(self, lock) : 
-        self.lock = lock
+
         

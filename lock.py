@@ -1,7 +1,7 @@
 class Lock :
-    def __init__(self,  code) :
+    def __init__(self,  code, initiallyLocked) :
         self.code = code
-        self.locked = True
+        self.locked = initiallyLocked
 
     def unlock(self, code) :
         """ 

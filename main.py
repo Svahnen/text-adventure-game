@@ -8,18 +8,17 @@ from lock import Lock
 def createWorld ():
     rooms = [] # This will be floors in the future that return all possible rooms
 
-    # Create all doors
-    expeditionDoor = Door("expedition")
-    officeDoor = Door("office")
 
     # Keys
-    officeKey = 123
+    masterKey = 123
 
     # Create all locks
-    officeLock = Lock(officeKey)
+    officeLock = Lock(masterKey, True)
+    expeditionLock = Lock(masterKey, False)
 
-    # Connect the locks and doors
-    officeDoor.setLock(officeLock)
+    # Create all doors
+    expeditionDoor = Door("expedition", expeditionLock)
+    officeDoor = Door("office", officeLock)
 
     # Create all rooms
     corridorRoom = Room("corridor",[expeditionDoor, officeDoor])
@@ -85,7 +84,9 @@ def doorAction(currentRoom, inventory):
             print(door.getName() + " closed")
     print("1. open ")
     print("2. close ")
-    print("3. cancel ")
+    if not inventory == [] :
+        print("3. Use keytag")
+    print("9. cancel ")
     try:
         actionInput = int(input("What do you want to do? "))
         if actionInput == 1 :
@@ -93,9 +94,12 @@ def doorAction(currentRoom, inventory):
             userInput = userInput.lower()
             for index in range(len(potentialDoors)) :
                 if potentialDoors[index].getName() == userInput and potentialDoors[index].isOpen() == False :
-                    potentialDoors[index].open()
-                    print("-------------------------------")
-                    print("You have now opened the door", potentialDoors[index].getName())
+                    if not potentialDoors[index].lock.isLocked() :
+                        potentialDoors[index].open()
+                        print("-------------------------------")
+                        print("You have now opened the door", potentialDoors[index].getName())
+                    else:
+                        print("The door is locked")
                     doorFound = True
                 elif potentialDoors[index].getName() == userInput :
                     print("The door is already open.")
@@ -117,6 +121,9 @@ def doorAction(currentRoom, inventory):
             if not doorFound : 
                 print("There is no door with that name")
         elif actionInput == 3 :
+            print("Key menu used")
+            return
+        elif actionInput == 9 :
             return
         else :
             print("There is no action with that number")
