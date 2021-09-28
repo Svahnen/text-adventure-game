@@ -57,6 +57,10 @@ def walk(currentRoom):
             except:
                 # The next room probably have no doors
                 return connectedRooms[index]
+        else:
+            print("-------------------------------")
+            print("There is no room with that name")
+            return currentRoom
 
 
 def doorAction(currentRoom):
@@ -81,6 +85,8 @@ def doorAction(currentRoom):
                     potentialDoors[index].open()
                     print("-------------------------------")
                     print("You have now opened the door", potentialDoors[index].getName())
+                else :
+                    print("There is no door with that name")
         elif actionInput == 2 :
             userInput = input("Which door do you want to close: ")
             userInput = userInput.lower()
@@ -89,8 +95,12 @@ def doorAction(currentRoom):
                     potentialDoors[index].close()
                     print("-------------------------------")
                     print("You have now closed the door", potentialDoors[index].getName())
+                else :
+                    print("There is no door with that name")
         elif actionInput == 3 :
             return
+        else :
+            print("There is no action with that number")
     except ValueError:
         print("You need to enter a number!")
 
@@ -129,6 +139,8 @@ def action(rooms):
             elif action == 9 :
                 print("Try to find a better game loser!")
                 running = False
+            else:
+                print("There is no action with that number")
         except ValueError:
             print("You need to enter a number!")
 
