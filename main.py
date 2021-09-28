@@ -125,9 +125,9 @@ def action(rooms):
         print("What do you want to do?")
         print("1. Walk")
         print("2. Look for doors")
-        print("9. Quit game")
         if currentRoom.getName() == "office":
             print("3. Use the computer")
+        print("9. Quit game")
         try:
             action = int(input())
             if action == 1 :

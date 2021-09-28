@@ -70,7 +70,7 @@ Make classes for things like for example rooms that are going to be used multipl
 
 
 ### Bugs:
-Create message if you try to open door that is already open
-Create message if you try to close a closed door
-In office menu, put quit game under "Use the computer" print
-When choosing the option to close a door that's already locked. It says that I have closed the door expedition, but also saying that there is no door with that name.
+1. Create message if you try to open door that is already open
+2. Create message if you try to close a closed door
+3. In office menu, put quit game under "Use the computer" print Done
+4. When choosing the option to close a door that's already locked. It says that I have closed 5. the door expedition, but also saying that there is no door with that name.
