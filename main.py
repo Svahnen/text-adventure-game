@@ -2,6 +2,7 @@
 
 from room import Room
 from door import Door
+from lock import Lock
 
 
 def createWorld ():
@@ -10,6 +11,15 @@ def createWorld ():
     # Create all doors
     expeditionDoor = Door("expedition")
     officeDoor = Door("office")
+
+    # Keys
+    officeKey = 123
+
+    # Create all locks
+    officeLock = Lock(officeKey)
+
+    # Connect the locks and doors
+    officeDoor.setLock(officeLock)
 
     # Create all rooms
     corridorRoom = Room("corridor",[expeditionDoor, officeDoor])
@@ -63,7 +73,7 @@ def walk(currentRoom):
             return currentRoom
 
 
-def doorAction(currentRoom):
+def doorAction(currentRoom, inventory):
     doorFound = False
     print("-------------------------------")
     print("These are the following door(s)")
@@ -126,6 +136,7 @@ def useComputer():
 def action(rooms):
     running = True
     currentRoom = rooms[0]
+    inventory = []
     while running:
         print("-------------------------------")
         print("***** " + currentRoom.getName() + " *****")
@@ -142,7 +153,7 @@ def action(rooms):
             if action == 1 :
                 currentRoom = walk(currentRoom)
             elif action == 2 :
-                doorAction(currentRoom)
+                doorAction(currentRoom, inventory)
             elif currentRoom.getName() == "office" and action == 3 :
                 running = useComputer()
             elif action == 9 :
