@@ -75,6 +75,6 @@ Make classes for things like for example rooms that are going to be used multipl
 
 
 ## Next step:
-Show extra menu item if room have items, menu "Pick up".: Done
-Finish the pickUp function
-When using "open" look through inventory and use key automatically if found.
+Show extra menu item if room have items, menu "Pick up": Done
+Finish the pickUp function: Done
+When using "open" look through inventory and use key automatically if found: Done

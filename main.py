@@ -76,7 +76,6 @@ def walk(currentRoom):
         return currentRoom
 
 
-# TODO: Add automatic unlock if player have key in inventory
 def openDoor(potentialDoors, inventory) :
     doorFound = False
     userInput = input("Which door do you want to open: ")
@@ -173,11 +172,20 @@ def pickUpItem(room, inventory) :
         print("There is no item with that name")
 
 
+def startGame():
+    print("The final study year is almost over.")
+    print("You have unfortunately failed your last")
+    print("exam and your mission is now to brake into")
+    print("the principals office and change your degree... ")
+    print("-------------------------------")
+    input("Press enter to start")
+
+
 def action(rooms):
     running = True
     currentRoom = rooms[0]
     inventory = []
-    print("this is a test:",currentRoom.getItems())
+    startGame()
     while running:
         print("-------------------------------")
         print("***** " + currentRoom.getName() + " *****")
