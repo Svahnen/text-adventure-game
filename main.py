@@ -36,7 +36,7 @@ def createWorld ():
     # Add descriptions to the rooms
     officeRoom.setDescription("You are standing in an office and you see a computer on the desk")
     corridorRoom.setDescription("You are standing in the corridor")
-    expeditionRoom.setDescription("You are in the expedition room, you see a postit note on the wall with the numbers: 987")
+    expeditionRoom.setDescription("You are in the expedition room, you see a note on the wall with the numbers: 987 and a key on a desk")
     
     # Append the rooms into the rooms list
     rooms.append(corridorRoom)
@@ -55,11 +55,8 @@ def walk(currentRoom):
     userInput = userInput.lower()
     connectedRoomFound = False
     for room in connectedRooms :
-        print("57")
-        print("58", room.getName())
         if room.getName() == userInput :
             connectedRoomFound = True
-            print("60")
             try: # See is the door list in current room and next room have a matching door
                 for doorInNextRoom in room.getDoorList() :
                     for doorInCurrentRoom in currentRoom.getDoorList() :
