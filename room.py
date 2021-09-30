@@ -31,3 +31,6 @@ class Room :
 
     def getItems(self) :
         return self.items
+
+    def removeItem(self, item) :
+        self.items.remove(item)

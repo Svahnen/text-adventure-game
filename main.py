@@ -1,5 +1,5 @@
 # This is where the main program lives
-
+from item import Item
 from room import Room
 from door import Door
 from lock import Lock
@@ -8,11 +8,11 @@ from lock import Lock
 def createWorld ():
     rooms = [] # This will be floors in the future that return all possible rooms
 
-    # Keys
-    masterKey = 123
+    # Create items
+    masterKey = Item("Office Key")
 
     # Create all locks
-    officeLock = Lock(masterKey, False) # TODO: set lock to be True (initially locked)
+    officeLock = Lock(masterKey, True)
     expeditionLock = Lock(masterKey, False)
 
     # Create all doors
@@ -36,7 +36,7 @@ def createWorld ():
     # Add descriptions to the rooms
     officeRoom.setDescription("You are standing in an office and you see a computer on the desk")
     corridorRoom.setDescription("You are standing in the corridor")
-    expeditionRoom.setDescription("You are in the expedition room, you see a note on the wall with the numbers: 987 and a key on a desk")
+    expeditionRoom.setDescription("You are in the expedition room, you see a note on the wall with the numbers 987 and a key on a desk")
     
     # Append the rooms into the rooms list
     rooms.append(corridorRoom)
@@ -76,8 +76,8 @@ def walk(currentRoom):
         return currentRoom
 
 
-# TODO: Move open and close to separate functions
 # TODO: Add automatic unlock if player have key in inventory
+# TODO: Move open and close to separate functions
 def doorAction(currentRoom, inventory):
     doorFound = False
     print("-------------------------------")
@@ -146,11 +146,21 @@ def useComputer():
         return True
 
 # TODO: implement this
-def pickUpItem(room) :
-    item = None # Will be an item from room.getItems()
+def pickUpItem(room, inventory) :
+    itemList = room.getItems()
     # TODO: Loop through items in "room" and let user type name of item to pick up
-    print("You have now picked up item", item)
-    return item
+    for item in itemList:
+        print(item.getName())
+    itemFound = False
+    userInput = input("What item do you want to pick up? ")
+    for item in itemList:
+        if userInput.lower() == item.getName().lower() :
+            print("You have picked up:", item.getName())
+            itemFound = True
+            inventory.append(item)
+            room.removeItem(item)
+    if not itemFound :
+        print("There is no item with that name")
 
 
 def action(rooms):
@@ -180,7 +190,7 @@ def action(rooms):
             elif currentRoom.getName() == "office" and action == 3 :
                 running = useComputer()
             elif not currentRoom.getItems() == [] and action == 7 :
-                inventory.append(pickUpItem(currentRoom))
+                pickUpItem(currentRoom, inventory)
             elif action == 9 :
                 print("Try to find a better game loser!")
                 running = False
