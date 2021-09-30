@@ -74,6 +74,7 @@ def walk(currentRoom):
             return currentRoom
 
 
+# TODO: Move open and close to separate functions
 def doorAction(currentRoom, inventory):
     doorFound = False
     print("-------------------------------")
@@ -141,6 +142,7 @@ def useComputer():
         print("You entered the wrong password! Try to find the password somewhere in the building")
         return True
 
+# TODO: implement this
 def pickUpItem(inventory : list, item) :
     inventory.append(item)
     print("You have now picked up item", item)
@@ -149,6 +151,7 @@ def action(rooms):
     running = True
     currentRoom = rooms[0]
     inventory = []
+    print("this is a test:",currentRoom.getItems())
     while running:
         print("-------------------------------")
         print("***** " + currentRoom.getName() + " *****")
@@ -157,6 +160,8 @@ def action(rooms):
         print("What do you want to do?")
         print("1. Walk")
         print("2. Look for doors")
+        if not currentRoom.getItems() == []: 
+            print("7. Use item")
         if currentRoom.getName() == "office":
             print("3. Use the computer")
         print("9. Quit game")
