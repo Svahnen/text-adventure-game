@@ -12,7 +12,7 @@ def createWorld ():
     masterKey = 123
 
     # Create all locks
-    officeLock = Lock(masterKey, True)
+    officeLock = Lock(masterKey, False)
     expeditionLock = Lock(masterKey, False)
 
     # Create all doors
@@ -28,8 +28,8 @@ def createWorld ():
     expeditionRoom.addItem(masterKey)
 
     # Connect rooms together
-    corridorRoom.addConnectedRoom(officeRoom) # corridor A leads to office
     corridorRoom.addConnectedRoom(expeditionRoom) # corridor A leads to expedition
+    corridorRoom.addConnectedRoom(officeRoom) # corridor A leads to office
     expeditionRoom.addConnectedRoom(corridorRoom) # expedition leads to corridor
     officeRoom.addConnectedRoom(corridorRoom) # office leads to corridor
 
@@ -53,25 +53,25 @@ def walk(currentRoom):
         print(room.getName())
     userInput = input("Where do you want to go: ")
     userInput = userInput.lower()
-    for index in range(len(connectedRooms)) :
-        if connectedRooms[index].getName() == userInput :
+    for room in connectedRooms :
+        print("57")
+        print("58", room.getName())
+        if room.getName() == userInput :
+            print("60")
             try: # See is the door list in current room and next room have a matching door
-                for doorInNextRoom in connectedRooms[index].getDoorList() :
+                for doorInNextRoom in room.getDoorList() :
                     for doorInCurrentRoom in currentRoom.getDoorList() :
                         if doorInNextRoom == doorInCurrentRoom :
                             if doorInCurrentRoom.isOpen():
-                                return connectedRooms[index] # Return the new room so it can update currentRoom
+                                return room # Return the new room so it can update currentRoom
                             else:
                                 print("-------------------------------")
                                 print("The door is closed")
                                 return currentRoom
             except:
                 # The next room probably have no doors
-                return connectedRooms[index]
-        else:
-            print("-------------------------------")
-            print("There is no room with that name")
-            return currentRoom
+                return room
+
 
 
 # TODO: Move open and close to separate functions
