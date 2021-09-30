@@ -12,7 +12,7 @@ def createWorld ():
     masterKey = 123
 
     # Create all locks
-    officeLock = Lock(masterKey, False)
+    officeLock = Lock(masterKey, False) # TODO: set lock to be True (initially locked)
     expeditionLock = Lock(masterKey, False)
 
     # Create all doors
@@ -53,10 +53,12 @@ def walk(currentRoom):
         print(room.getName())
     userInput = input("Where do you want to go: ")
     userInput = userInput.lower()
+    connectedRoomFound = False
     for room in connectedRooms :
         print("57")
         print("58", room.getName())
         if room.getName() == userInput :
+            connectedRoomFound = True
             print("60")
             try: # See is the door list in current room and next room have a matching door
                 for doorInNextRoom in room.getDoorList() :
@@ -71,10 +73,14 @@ def walk(currentRoom):
             except:
                 # The next room probably have no doors
                 return room
-
+    if not connectedRoomFound :
+        print("-------------------------------")
+        print("There is no room with that name")
+        return currentRoom
 
 
 # TODO: Move open and close to separate functions
+# TODO: Add automatic unlock if player have key in inventory
 def doorAction(currentRoom, inventory):
     doorFound = False
     print("-------------------------------")
@@ -143,9 +149,12 @@ def useComputer():
         return True
 
 # TODO: implement this
-def pickUpItem(inventory : list, item) :
-    inventory.append(item)
+def pickUpItem(room) :
+    item = None # Will be an item from room.getItems()
+    # TODO: Loop through items in "room" and let user type name of item to pick up
     print("You have now picked up item", item)
+    return item
+
 
 def action(rooms):
     running = True
@@ -161,7 +170,7 @@ def action(rooms):
         print("1. Walk")
         print("2. Look for doors")
         if not currentRoom.getItems() == []: 
-            print("7. Use item")
+            print("7. Pick up an item")
         if currentRoom.getName() == "office":
             print("3. Use the computer")
         print("9. Quit game")
@@ -173,6 +182,8 @@ def action(rooms):
                 doorAction(currentRoom, inventory)
             elif currentRoom.getName() == "office" and action == 3 :
                 running = useComputer()
+            elif not currentRoom.getItems() == [] and action == 7 :
+                inventory.append(pickUpItem(currentRoom))
             elif action == 9 :
                 print("Try to find a better game loser!")
                 running = False
