@@ -82,23 +82,20 @@ def unlockDoor(inventory, door):
         if door.lock.unlock(item) :
             print("You have used a key from your inventory")
 
+
 def openDoor(potentialDoors, inventory) :
     doorFound = False
     userInput = input("Which door do you want to open: ")
     userInput = userInput.lower()
     for index in range(len(potentialDoors)) :
-        if potentialDoors[index].getName() == userInput and potentialDoors[index].isOpen() == False :
-            if not potentialDoors[index].lock.isLocked() :
-                potentialDoors[index].open()
+        if potentialDoors[index].getName() == userInput :
+            if potentialDoors[index].open():
                 print("-------------------------------")
-                print("You have now opened the door", potentialDoors[index].getName())
+                print(potentialDoors[index].getName(), "door is open")
             else:
                 print("The door is locked")
                 unlockDoor(inventory,potentialDoors[index])
                 potentialDoors[index].open()
-            doorFound = True
-        elif potentialDoors[index].getName() == userInput :
-            print("The door is already open.")
             doorFound = True
     if not doorFound : # if doorFound == False: same same
         print("There is no door with that name")
@@ -109,13 +106,10 @@ def closeDoor(potentialDoors):
     userInput = input("Which door do you want to close: ")
     userInput = userInput.lower()
     for index in range(len(potentialDoors)) :
-        if potentialDoors[index].getName() == userInput and potentialDoors[index].isOpen(): 
+        if potentialDoors[index].getName() == userInput : 
             potentialDoors[index].close()
             print("-------------------------------")
-            print("You have now closed the door", potentialDoors[index].getName())
-            doorFound = True
-        elif potentialDoors[index].getName() == userInput :
-            print("The door is already closed")
+            print(potentialDoors[index].getName(), "door is closed")
             doorFound = True
     if not doorFound : 
         print("There is no door with that name")
@@ -175,7 +169,7 @@ def pickUpItem(room, inventory) :
         print("There is no item with that name")
 
 
-def startGame():
+def startMessage():
     print("The final study year is almost over.")
     print("You have unfortunately failed your last")
     print("exam and your mission is now to brake into")
@@ -188,7 +182,7 @@ def action(rooms):
     running = True
     currentRoom = rooms[0]
     inventory = []
-    startGame()
+    startMessage()
     while running:
         print("-------------------------------")
         print("***** " + currentRoom.getName() + " *****")
