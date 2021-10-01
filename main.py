@@ -46,16 +46,14 @@ def createWorld ():
     action(rooms)
 
 
-def compareRoomDoors(currentRoom, nextRoom) :
+def isDoorOpenBetween(currentRoom, nextRoom) :
     for doorInNextRoom in nextRoom.getDoorList() :
         for doorInCurrentRoom in currentRoom.getDoorList() :
             if doorInNextRoom == doorInCurrentRoom :
                 if doorInCurrentRoom.isOpen():
-                    return nextRoom # Return the new room so it can update currentRoom
+                    return True # Both rooms have the door and it's open
                 else:
-                    print("-------------------------------")
-                    print("The door is closed")
-                    return currentRoom
+                    return False
 
 def walk(currentRoom):
     print("These are the options")
@@ -68,13 +66,21 @@ def walk(currentRoom):
     for room in connectedRooms :
         if room.getName() == userInput :
             connectedRoomFound = True
-            if compareRoomDoors(currentRoom, room):
-                return room # If rooms have a matching door return the next room
+            if isDoorOpenBetween(currentRoom, room):
+                return room # Rooms have a matching open door, return the next room
+            else:
+                print("-------------------------------")
+                print("The door is closed")
+                return currentRoom
     if not connectedRoomFound :
         print("-------------------------------")
         print("There is no room with that name")
-        return currentRoom # If user typed a room name that did not exist, return currentRoom
+        return currentRoom
 
+def unlockDoor(inventory, door):
+    for item in inventory :
+        if door.lock.unlock(item) :
+            print("You have used a key from your inventory")
 
 def openDoor(potentialDoors, inventory) :
     doorFound = False
@@ -88,11 +94,8 @@ def openDoor(potentialDoors, inventory) :
                 print("You have now opened the door", potentialDoors[index].getName())
             else:
                 print("The door is locked")
-                # TODO: Try to unlock the door if key is in inventory
-                for item in inventory :
-                    if potentialDoors[index].lock.unlock(item) :
-                        print("You have used a key from your inventory")
-                        potentialDoors[index].open()
+                unlockDoor(inventory,potentialDoors[index])
+                potentialDoors[index].open()
             doorFound = True
         elif potentialDoors[index].getName() == userInput :
             print("The door is already open.")
