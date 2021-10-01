@@ -46,6 +46,17 @@ def createWorld ():
     action(rooms)
 
 
+def compareRoomDoors(currentRoom, nextRoom) :
+    for doorInNextRoom in nextRoom.getDoorList() :
+        for doorInCurrentRoom in currentRoom.getDoorList() :
+            if doorInNextRoom == doorInCurrentRoom :
+                if doorInCurrentRoom.isOpen():
+                    return nextRoom # Return the new room so it can update currentRoom
+                else:
+                    print("-------------------------------")
+                    print("The door is closed")
+                    return currentRoom
+
 def walk(currentRoom):
     print("These are the options")
     connectedRooms = currentRoom.getConnectedRooms()
@@ -57,23 +68,12 @@ def walk(currentRoom):
     for room in connectedRooms :
         if room.getName() == userInput :
             connectedRoomFound = True
-            try: # See is the door list in current room and next room have a matching door
-                for doorInNextRoom in room.getDoorList() :
-                    for doorInCurrentRoom in currentRoom.getDoorList() :
-                        if doorInNextRoom == doorInCurrentRoom :
-                            if doorInCurrentRoom.isOpen():
-                                return room # Return the new room so it can update currentRoom
-                            else:
-                                print("-------------------------------")
-                                print("The door is closed")
-                                return currentRoom
-            except:
-                # The next room probably have no doors
-                return room
+            if compareRoomDoors(currentRoom, room):
+                return room # If rooms have a matching door return the next room
     if not connectedRoomFound :
         print("-------------------------------")
         print("There is no room with that name")
-        return currentRoom
+        return currentRoom # If user typed a room name that did not exist, return currentRoom
 
 
 def openDoor(potentialDoors, inventory) :
