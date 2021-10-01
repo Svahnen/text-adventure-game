@@ -1,4 +1,5 @@
 # This is where the main program lives
+import random
 from item import Item
 from room import Room
 from door import Door
@@ -10,6 +11,9 @@ def createWorld ():
 
     # Create items
     masterKey = Item("Office Key")
+
+    # Set password for the computer
+    pcPass = str(random.randint(100,999))
 
     # Create all locks
     officeLock = Lock(masterKey, True)
@@ -36,14 +40,14 @@ def createWorld ():
     # Add descriptions to the rooms
     officeRoom.setDescription("You are standing in an office and you see a computer on the desk")
     corridorRoom.setDescription("You are standing in the corridor")
-    expeditionRoom.setDescription("You are in the expedition room, you see a note on the wall with the numbers 987 and a key on a desk")
+    expeditionRoom.setDescription("You are in the expedition room, you see a note on the wall with the numbers " + pcPass + " and a key on a desk")
     
     # Append the rooms into the rooms list
     rooms.append(corridorRoom)
     rooms.append(expeditionRoom)
     rooms.append(officeRoom)
 
-    action(rooms)
+    action(rooms, pcPass)
 
 
 def isDoorOpenBetween(currentRoom, nextRoom) :
@@ -146,9 +150,9 @@ def doorAction(currentRoom, inventory):
         print("You need to enter a number!")
 
 
-def useComputer():
+def useComputer(pcPass):
     userPass = input("Enter password: ")
-    if userPass == "987" :
+    if userPass == pcPass :
         print("You have changed your grades and completed the game!")
         return False
     else :
@@ -161,7 +165,7 @@ def pickUpItem(room, inventory) :
     for item in itemList:
         print(item.getName())
     itemFound = False
-    userInput = input("What ite4-tab-steg m do you want to pick up? ")
+    userInput = input("What item do you want to pick up? ")
     for item in itemList:
         if userInput.lower() == item.getName().lower() :
             print("You have picked up:", item.getName())
@@ -181,7 +185,7 @@ def startMessage():
     input("Press enter to start")
 
 
-def action(rooms):
+def action(rooms, pcPass):
     running = True
     currentRoom = rooms[0]
     inventory = []
@@ -206,7 +210,7 @@ def action(rooms):
             elif action == 2 :
                 doorAction(currentRoom, inventory)
             elif currentRoom.getName() == "office" and action == 3 :
-                running = useComputer()
+                running = useComputer(pcPass)
             elif not currentRoom.getItems() == [] and action == 7 :
                 pickUpItem(currentRoom, inventory)
             elif action == 9 :
