@@ -14,7 +14,7 @@ Morning standup meetings on every project day, 9:00.
 - Be able to move between rooms: Done
 - Pick up items: Done
 - Interact with a map
-- Use items from inventory, keys, laxatives
+- Player inventory, keys, laxatives
     - Use key automatically when opening a door: Done
     - Use laxative in teachers coffee
 - Login computer and change grades
