@@ -39,6 +39,7 @@ Morning standup meetings on every project day, 9:00.
 9. Implement pickUp function: Done
 10. When using "open" look through inventory and use key automatically if found: Done
 11. Add doors to the rooms with a class function instead. Would make it possible to create rooms without doors.
+12. Implement random computer password: Done
 
 
 ## Bugs:
