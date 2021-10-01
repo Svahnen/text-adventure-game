@@ -55,6 +55,7 @@ def isDoorOpenBetween(currentRoom, nextRoom) :
                 else:
                     return False
 
+
 def walk(currentRoom):
     print("These are the options")
     connectedRooms = currentRoom.getConnectedRooms()
@@ -76,6 +77,7 @@ def walk(currentRoom):
         print("-------------------------------")
         print("There is no room with that name")
         return currentRoom
+
 
 def unlockDoor(inventory, door):
     for item in inventory :
@@ -143,6 +145,7 @@ def doorAction(currentRoom, inventory):
     except ValueError:
         print("You need to enter a number!")
 
+
 def useComputer():
     userPass = input("Enter password: ")
     if userPass == "987" :
@@ -158,7 +161,7 @@ def pickUpItem(room, inventory) :
     for item in itemList:
         print(item.getName())
     itemFound = False
-    userInput = input("What item do you want to pick up? ")
+    userInput = input("What ite4-tab-steg m do you want to pick up? ")
     for item in itemList:
         if userInput.lower() == item.getName().lower() :
             print("You have picked up:", item.getName())
