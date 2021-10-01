@@ -4,4 +4,3 @@ class Item :
 
     def getName(self) :
         return self.name
-

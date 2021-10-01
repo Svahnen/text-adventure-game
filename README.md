@@ -10,8 +10,8 @@ Hitta nycklar till olika rum
 Användarnamn och lösenord till datorn med betygen
 Spika kaffet i personalrummet med laxermedel
 Potentiella fiender, som kanske tex dricker kaffe och behöver luras iväg:
-Mikael Boman
-Jonathan Holmström
+Lärare 1
+Lärare 2
 (Kanske ställa en fråga i början av spelet vad eleven heter och hens lärare heter, så de kan bli mer personligt för den som spelar, samt spelet behöver inte ha ngs namn i sig)
 
 # Email instructions
@@ -28,27 +28,25 @@ Check varje timer tick som kollar om en NPC är i samma rum som dig (för att av
 
 Detta låter fullt lösbart på 3 pers på 2 veckor så ni har mitt "ok" att köra på. Visar det sig att ni blir klara med det ni planerat innan deadline (utan att jobba övertid) så släng på nått extra pussel. Men ja, ert innehåll ser bra ut med objekt som kan röra sig och interageras med på olika sätt.
 
-/Mvh
-Jonathan
 
 
 # My email
 Gameplay:
 1: Hitta nyckel till personalrummet inne på expeditionen
-2: Hitta Användarnamn och lösenord på en post-it lapp på Mikael Bomans skrivbord
+2: Hitta Användarnamn och lösenord på en post-it lapp på Lärare 1 skrivbord
 3: MVP: Logga in på datorn och ändra alla betyg till VG: Success! Spelet är slut
 
 Om tid finnes:
-3: Jonathan sitter i personalrummet, spika hans kaffe med laxermedel
-4: Jonathan går på toaletten, göm dig snabbt! (timer som tickar ner)
+3: Lärare 2 sitter i personalrummet, spika hans kaffe med laxermedel
+4: Lärare 2 går på toaletten, göm dig snabbt! (timer som tickar ner)
 Alternativt slut: Logga in på datorn och ändra alla betyg till VG: Success! Spelet är slut
 
 ### Gameplay:
 1: Hitta nyckel till personalrummet inne på expeditionen
-2: Hitta Användarnamn och lösenord på en post-it lapp på Mikael Bomans skrivbord
+2: Hitta Användarnamn och lösenord på en post-it lapp på Lärare 1 skrivbord
 3: MVP: Logga in på datorn och ändra alla betyg till VG: Success! Spelet är slut
-3: Jonathan sitter i personalrummet, spika hans kaffe med laxermedel
-4: Jonathan går på toaletten, göm dig snabbt! (timer som tickar ner)
+3: Lärare 2 sitter i personalrummet, spika hans kaffe med laxermedel
+4: Lärare 2 går på toaletten, göm dig snabbt! (timer som tickar ner)
 Alternativt slut: Logga in på datorn och ändra alla betyg till VG: Success! Spelet är slut
 
 Ordningen på rummen kan komma att justeras om utifall vi har tid att lägga in alternativa pussel
