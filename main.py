@@ -155,24 +155,24 @@ def useComputer(pcPass):
     userPass = input("Enter password: ")
     if userPass == pcPass :
         print("You have changed your grades and completed the game!")
-        return False
+        return False # Return the new state for running variable in action function (False will stop the game)
     else :
         print("You entered the wrong password! Try to find the password somewhere in the building")
         return True
 
 
-def pickUpItem(room, inventory) :
-    itemList = room.getItems()
+def pickUpItem(room, inventory) : # To check if the item is in the currentRoom
+    itemList = room.getItems() # Saves all the items from the current room in a temporary list = ["Office key", "Note"]
     for item in itemList:
-        print(item.getName())
-    itemFound = False
+        print(item.getName()) # Print all the item names
+    itemFound = False 
     userInput = input("What item do you want to pick up? ")
     for item in itemList:
         if userInput.lower() == item.getName().lower() :
             print("You have picked up:", item.getName())
             itemFound = True
-            inventory.append(item)
-            room.removeItem(item)
+            inventory.append(item) # Add the item to player inventory
+            room.removeItem(item) # Remove the same item from the room
     if not itemFound :
         print("There is no item with that name")
 
@@ -206,18 +206,19 @@ def saveGame(inventory):
     saveList = []
     for item in inventory:
         saveList.append(item.getName())
-    writeToDatabase(saveList)
+    writeToDatabase(saveList) # Use the function writeToDatabase thats imported from database.py
 
 
 def loadGame(rooms, inventory):
-    items = readDatabase()
+    items = readDatabase() # Retrives the name from database.json
     itemsFound = False
     for room in rooms:
         for item in room.getItems():
             for itemName in items:
+                # itemName is the name from database.JSON and item.getName() is the name from items in the room
                 if itemName.lower() == item.getName().lower() :
-                    inventory.append(item)
-                    room.removeItem(item)
+                    inventory.append(item) # if item is found add it to the inventory
+                    room.removeItem(item) # and remove the same item from the room
                     itemsFound = True
     if not itemsFound:
         print("-------------------------------")
@@ -226,9 +227,9 @@ def loadGame(rooms, inventory):
 
 def action(rooms, pcPass):
     running = True
-    currentRoom = rooms[0]
+    currentRoom = rooms[0] # Hard coded room to start the game in (in the future this would be where we read from database what room we were last time)
     inventory = []
-    startMessage(rooms, inventory)
+    startMessage(rooms, inventory) # inventory will be updated inside here if player loads save
     while running:
         print("-------------------------------")
         print("***** " + currentRoom.getName() + " *****")
@@ -255,11 +256,11 @@ def action(rooms, pcPass):
             elif action == 9 :
                 print("Try to find a better game loser!")
                 running = False
-                saveGame(inventory)
+                saveGame(inventory) # The game saves when player quits from menu
             else:
                 print("There is no action with that number")
         except ValueError:
             print("You need to enter a number!")
 
 
-createWorld()
+createWorld() # This starts the program
