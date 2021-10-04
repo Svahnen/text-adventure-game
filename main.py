@@ -34,8 +34,8 @@ def createWorld ():
     expeditionRoom.addItem(masterKey)
 
     # Connect rooms together
-    corridorRoom.addConnectedRoom(expeditionRoom) # corridor A leads to expedition
-    corridorRoom.addConnectedRoom(officeRoom) # corridor A leads to office
+    corridorRoom.addConnectedRoom(expeditionRoom) # corridor leads to expedition
+    corridorRoom.addConnectedRoom(officeRoom) # corridor leads to office
     expeditionRoom.addConnectedRoom(corridorRoom) # expedition leads to corridor
     officeRoom.addConnectedRoom(corridorRoom) # office leads to corridor
 
@@ -142,9 +142,6 @@ def doorAction(currentRoom, inventory):
             openDoor(potentialDoors, inventory)
         elif actionInput == 2 :
             closeDoor(potentialDoors)
-        elif actionInput == 3 :
-            print("Key menu used")
-            return
         elif actionInput == 9 :
             return
         else :
