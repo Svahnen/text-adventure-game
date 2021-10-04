@@ -208,12 +208,17 @@ def saveGame(inventory):
 
 def loadGame(rooms, inventory):
     items = readDatabase()
+    itemsFound = False
     for room in rooms:
         for item in room.getItems():
             for itemName in items:
                 if itemName.lower() == item.getName().lower() :
                     inventory.append(item)
                     room.removeItem(item)
+                    itemsFound = True
+    if not itemsFound:
+        print("-------------------------------")
+        print("There was no items to load")
 
 
 def action(rooms, pcPass):
