@@ -186,7 +186,7 @@ def startMessage(rooms, inventory):
     print("the principals office and change your degree... ")
     print("-------------------------------")
     print("1. Start a new game")
-    print("2. Load previous game")
+    print("2. Load items from previous game")
     try:
         action = int(input())
         if action == 1 :
@@ -205,7 +205,7 @@ def saveGame(inventory):
         print(item.getName())
         saveList.append(item.getName())
     writeToDatabase(saveList)
-        
+
 
 def loadGame(rooms, inventory):
     items = readDatabase()
@@ -215,7 +215,6 @@ def loadGame(rooms, inventory):
                 if itemName.lower() == item.getName().lower() :
                     inventory.append(item)
                     room.removeItem(item)
-
 
 
 def action(rooms, pcPass):
