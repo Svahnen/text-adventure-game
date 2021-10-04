@@ -1,11 +1,12 @@
 from door import Door
+from floor import Floor
 
-class Room :
+class Room(Floor) :
     def __init__(self, name, doorList : list[Door]) : #Constructor
+        super().__init__()
         self.name = name
         self.doorList = doorList
         self.connectedRooms = []
-        self.description = ""
         self.items = []
 
     def getName(self) :
@@ -20,7 +21,7 @@ class Room :
     def getConnectedRooms(self) :
         return self.connectedRooms
 
-    def setDescription(self, description) :
+    def setDescription(self, description) : # Override parent
         self.description = description
     
     def getDescription(self) :
