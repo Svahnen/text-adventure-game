@@ -4,6 +4,8 @@ from item import Item
 from room import Room
 from door import Door
 from lock import Lock
+from database import readDatabase, writeToDatabase
+
 
 
 def createWorld ():
@@ -46,8 +48,13 @@ def createWorld ():
     rooms.append(corridorRoom)
     rooms.append(expeditionRoom)
     rooms.append(officeRoom)
+    
+    saveGame = readDatabase()
+    saveGame.append(pcPass)
+    writeToDatabase(saveGame)
 
     action(rooms, pcPass)
+
 
 
 def isDoorOpenBetween(currentRoom, nextRoom) :
