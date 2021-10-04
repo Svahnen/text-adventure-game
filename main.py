@@ -1,5 +1,5 @@
 # This is where the main program lives
-import random
+import random # Library in python that we use in row 18
 from item import Item
 from room import Room
 from door import Door
@@ -15,27 +15,28 @@ def createWorld ():
     masterKey = Item("Office Key")
 
     # Set password for the computer
-    pcPass = str(random.randint(100,999))
+    pcPass = str(random.randint(100,999)) # Generate a number between 100-999 and convert them to a string
 
     # Create all locks
-    officeLock = Lock(masterKey, True)
-    expeditionLock = Lock(masterKey, False)
+    officeLock = Lock(masterKey, True) # Create lock for office using masterKey and set lock to initially unlocked
+    expeditionLock = Lock(masterKey, False) # Create lock for office using masterKey and set lock to initially locked
 
     # Create all doors
-    expeditionDoor = Door("expedition", expeditionLock)
-    officeDoor = Door("office", officeLock)
+    expeditionDoor = Door("expedition", expeditionLock) # Create door, set door name and set the right doorlock to the right door
+    officeDoor = Door("office", officeLock) 
 
     # Create all rooms
-    corridorRoom = Room("corridor",[expeditionDoor, officeDoor])
+    corridorRoom = Room("corridor",[expeditionDoor, officeDoor]) # Create room and set their connected doors
     expeditionRoom = Room("expedition", [expeditionDoor])
     officeRoom = Room("office", [officeDoor])
 
     # Add items to rooms
     expeditionRoom.addItem(masterKey)
+    #expeditionRoom.addItem(ball) this is how you add another item
 
     # Connect rooms together
-    corridorRoom.addConnectedRoom(expeditionRoom) # corridor A leads to expedition
-    corridorRoom.addConnectedRoom(officeRoom) # corridor A leads to office
+    corridorRoom.addConnectedRoom(expeditionRoom) # corridor leads to expedition
+    corridorRoom.addConnectedRoom(officeRoom) # corridor leads to office
     expeditionRoom.addConnectedRoom(corridorRoom) # expedition leads to corridor
     officeRoom.addConnectedRoom(corridorRoom) # office leads to corridor
 
@@ -49,11 +50,11 @@ def createWorld ():
     rooms.append(expeditionRoom)
     rooms.append(officeRoom)
     
-    action(rooms, pcPass)
+    action(rooms, pcPass) # Run the actual program
 
 
 
-def isDoorOpenBetween(currentRoom, nextRoom) :
+def isDoorOpenBetween(currentRoom, nextRoom) : # isDoorOpenBetween checks if there's a open door in between the rooms
     for doorInNextRoom in nextRoom.getDoorList() :
         for doorInCurrentRoom in currentRoom.getDoorList() :
             if doorInNextRoom == doorInCurrentRoom :
@@ -97,7 +98,7 @@ def openDoor(potentialDoors, inventory) :
     userInput = input("Which door do you want to open: ")
     userInput = userInput.lower()
     for index in range(len(potentialDoors)) :
-        if potentialDoors[index].getName() == userInput :
+        if potentialDoors[index].getName() == userInput : 
             if potentialDoors[index].open():
                 print("-------------------------------")
                 print(potentialDoors[index].getName(), "door is open")
@@ -105,7 +106,7 @@ def openDoor(potentialDoors, inventory) :
                 print("The door is locked")
                 unlockDoor(inventory,potentialDoors[index])
                 potentialDoors[index].open()
-            doorFound = True
+            doorFound = True # sets only if the door is found in the list
     if not doorFound : # if doorFound == False: same same
         print("There is no door with that name")
 
@@ -124,7 +125,7 @@ def closeDoor(potentialDoors):
         print("There is no door with that name")
 
 
-def doorAction(currentRoom, inventory):
+def doorAction(currentRoom, inventory): # Inventory is only here so we can pass it on to openDoor
     print("-------------------------------")
     print("These are the following door(s)")
     potentialDoors = currentRoom.getDoorList()
@@ -141,7 +142,7 @@ def doorAction(currentRoom, inventory):
         if actionInput == 1 :
             openDoor(potentialDoors, inventory)
         elif actionInput == 2 :
-            closeDoor(potentialDoors)
+            closeDoor(potentialDoors) # Does not need to check if there's a key
         elif actionInput == 3 :
             print("Key menu used")
             return
