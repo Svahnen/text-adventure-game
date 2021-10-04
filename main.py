@@ -49,10 +49,6 @@ def createWorld ():
     rooms.append(expeditionRoom)
     rooms.append(officeRoom)
     
-    saveGame = readDatabase()
-    saveGame.append(pcPass)
-    writeToDatabase(saveGame)
-
     action(rooms, pcPass)
 
 
@@ -183,20 +179,50 @@ def pickUpItem(room, inventory) :
         print("There is no item with that name")
 
 
-def startMessage():
+def startMessage(rooms, inventory):
     print("The final study year is almost over.")
     print("You have unfortunately failed your last")
     print("exam and your mission is now to brake into")
     print("the principals office and change your degree... ")
     print("-------------------------------")
-    input("Press enter to start")
+    print("1. Start a new game")
+    print("2. Load previous game")
+    try:
+        action = int(input())
+        if action == 1 :
+            return []
+        elif action == 2 :
+            return loadGame(rooms, inventory)
+        else:
+            print("There is no action with that number")
+    except ValueError:
+        print("You need to enter a number!")
+
+
+def saveGame(inventory):
+    saveList = []
+    for item in inventory:
+        print(item.getName())
+        saveList.append(item.getName())
+    writeToDatabase(saveList)
+        
+
+def loadGame(rooms, inventory):
+    items = readDatabase()
+    for room in rooms:
+        for item in room.getItems():
+            for itemName in items:
+                if itemName.lower() == item.getName().lower() :
+                    inventory.append(item)
+                    room.removeItem(item)
+
 
 
 def action(rooms, pcPass):
     running = True
     currentRoom = rooms[0]
     inventory = []
-    startMessage()
+    startMessage(rooms, inventory)
     while running:
         print("-------------------------------")
         print("***** " + currentRoom.getName() + " *****")
@@ -223,6 +249,7 @@ def action(rooms, pcPass):
             elif action == 9 :
                 print("Try to find a better game loser!")
                 running = False
+                saveGame(inventory)
             else:
                 print("There is no action with that number")
         except ValueError:

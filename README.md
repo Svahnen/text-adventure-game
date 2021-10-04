@@ -42,6 +42,16 @@ Morning standup meetings on every project day, 9:00.
 12. Implement random computer password: Done
 13. Add a floor class that is a parent to room: Done
 
+## Future improvements:
+1. re-do database to save current room and inventory
+    - [
+    {
+        "inventory": [
+            "Office Key"
+        ],
+        "currentRoom": "corridor"
+    }
+]
 
 ## Bugs:
 1. In office menu, put quit game under "Use the computer": Fixed
