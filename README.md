@@ -40,6 +40,7 @@ Morning standup meetings on every project day, 9:00.
 10. When using "open" look through inventory and use key automatically if found: Done
 11. Add doors to the rooms with a class function instead. Would make it possible to create rooms without doors.
 12. Implement random computer password: Done
+13. Add a floor class that is a parent to room: Done
 
 
 ## Bugs:
