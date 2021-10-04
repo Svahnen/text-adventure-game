@@ -142,10 +142,7 @@ def doorAction(currentRoom, inventory): # Inventory is only here so we can pass 
         if actionInput == 1 :
             openDoor(potentialDoors, inventory)
         elif actionInput == 2 :
-            closeDoor(potentialDoors) # Does not need to check if there's a key
-        elif actionInput == 3 :
-            print("Key menu used")
-            return
+            closeDoor(potentialDoors)
         elif actionInput == 9 :
             return
         else :
