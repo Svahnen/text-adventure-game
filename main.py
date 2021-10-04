@@ -180,23 +180,28 @@ def pickUpItem(room, inventory) :
 
 
 def startMessage(rooms, inventory):
-    print("The final study year is almost over.")
-    print("You have unfortunately failed your last")
-    print("exam and your mission is now to brake into")
-    print("the principals office and change your degree... ")
-    print("-------------------------------")
-    print("1. Start a new game")
-    print("2. Load items from previous game")
-    try:
-        action = int(input())
-        if action == 1 :
-            return []
-        elif action == 2 :
-            return loadGame(rooms, inventory)
-        else:
-            print("There is no action with that number")
-    except ValueError:
-        print("You need to enter a number!")
+    while True:
+        print("The final study year is almost over.")
+        print("You have unfortunately failed your last")
+        print("exam and your mission is now to brake into")
+        print("the principals office and change your degree... ")
+        print("-------------------------------")
+        print("1. Start a new game")
+        print("2. Load items from previous game")
+        try:
+            action = int(input())
+            if action == 1 :
+                return []
+            elif action == 2 :
+                return loadGame(rooms, inventory)
+            else:
+                print("-------------------------------")
+                print("There is no action with that number")
+                print("-------------------------------")
+        except ValueError:
+            print("-------------------------------")
+            print("You need to enter a number!")
+            print("-------------------------------")
 
 
 def saveGame(inventory):
