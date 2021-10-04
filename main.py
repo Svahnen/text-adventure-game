@@ -202,7 +202,6 @@ def startMessage(rooms, inventory):
 def saveGame(inventory):
     saveList = []
     for item in inventory:
-        print(item.getName())
         saveList.append(item.getName())
     writeToDatabase(saveList)
 
