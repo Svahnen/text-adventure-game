@@ -52,6 +52,8 @@ Morning standup meetings on every project day, 9:00.
         "currentRoom": "corridor"
     }
 ]
+Interactable parent class with abstract stuff
+should be possible to see what class a object is
 
 ## Bugs:
 1. In office menu, put quit game under "Use the computer": Fixed

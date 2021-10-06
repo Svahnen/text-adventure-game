@@ -93,6 +93,8 @@ def unlockDoor(inventory, door):
             print("You have used a key from your inventory")
 
 
+# Possible to do a third function that does the things that are included in both functions
+# Another less perfect way is to set default states in the function, so that inventory does not need to be included in close
 def openDoor(potentialDoors, inventory) :
     doorFound = False
     userInput = input("Which door do you want to open: ")
@@ -201,7 +203,7 @@ def startMessage(rooms, inventory):
             print("You need to enter a number!")
             print("-------------------------------")
 
-
+# Look up serialization
 def saveGame(inventory):
     saveList = []
     for item in inventory:
@@ -209,6 +211,7 @@ def saveGame(inventory):
     writeToDatabase(saveList) # Use the function writeToDatabase thats imported from database.py
 
 
+# Better naming for example database item
 def loadGame(rooms, inventory):
     items = readDatabase() # Retrives the name from database.json
     itemsFound = False
@@ -263,4 +266,5 @@ def action(rooms, pcPass):
             print("You need to enter a number!")
 
 
+# First create then another function for start
 createWorld() # This starts the program
